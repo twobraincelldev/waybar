@@ -1,0 +1,92 @@
+{
+  "output": "DP-2",
+    "layer": "top",
+    "position": "top",
+    "modules-left": [
+      "sway/workspaces",
+    "sway/mode"
+    ],
+    "modules-center": [
+      "clock"
+    ],
+
+    "modules-right": [
+    "cpu",
+    "pulseaudio",
+    "custom/update",
+    "tray"
+    ],
+
+    "sway/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+        "1": "I",
+        "2": "II",
+        "3": "III",
+        "4": "IV",
+        "5": "V",
+      }
+    },
+
+    "sway/mode": {
+      "format": " {}",
+      "max-length": 100
+    },
+
+    "network#down": {
+      "interface": "*",
+      "format": " {bandwidthDownBits}",
+      "tooltip-format": "{ifname} {ipaddr}",
+      "interval": 1
+    },
+
+    "network#up": {
+      "interface": "*",
+      "format": " {bandwidthUpBits}",
+      "tooltip-format": "{ifname} {ipaddr}",
+      "interval": 1
+    },
+
+
+    "custom/uname": {
+      "format": " {}",
+      "exec": "uname -r",
+      "tooltip": false
+    },
+
+    "clock": {
+      "format": "{: %a,%d%b  %I:%M%p}",
+      "interval": 5,
+      "timezone": "Europe/Amsterdam",
+      "tooltip": false
+    },
+
+    "cpu": {
+      "format": " {usage}%",
+      "tooltip": false
+    },
+
+    "tray": {
+    },
+
+    "custom/update": {
+      "format": "<span font='11'> </span>",
+      "interval": 3600,
+      "exec": "$HOME/.config/waybar/scripts/update.sh",
+      "return-type": "json",
+      "on-click": "kitty -T=updater pamac update --aur --no-confirm; pkill -SIGRTMIN+8 waybar",
+      "signal": 8
+    },
+
+    "pulseaudio": {
+      "format": "<span font='11'>{icon} </span>",
+      "format-bluetooth": "<span font='11'>{icon} </span>",
+      "format-icons": {
+        "default": ["", "", ""],
+      },
+      "tooltip-format": "{desc}{volume}%",
+      "scroll-step": 1,
+      "on-click": "pavucontrol"
+    },
+},
+
